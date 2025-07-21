@@ -7,7 +7,7 @@ const {
   getDrawingData
 } = require('../utils/roomUtils');
 
-const userRoomMap = new Map(); // socket.id -> roomId
+const userRoomMap = new Map(); 
 
 module.exports = function(io) {
   io.on('connection', socket => {

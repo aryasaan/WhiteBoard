@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export default function RoomJoin({ onRoomJoin }) {
   const [roomId, setRoomId] = useState('');
+  const [userName, setUserName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -14,10 +15,15 @@ export default function RoomJoin({ onRoomJoin }) {
     }
     setLoading(true);
     try {
-      const res = await fetch('https://whiteboard-2-tjht.onrender.com/api/rooms/join', {
+      const res = await fetch('http://localhost:5000/api/rooms/join', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ roomId: roomId.trim().toUpperCase() }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          roomId: roomId,      
+          userName: userName || 'Guest', 
+        })
       });
       const data = await res.json();
       if (!data.success) setError(data.error || 'Error joining room');
@@ -41,6 +47,14 @@ export default function RoomJoin({ onRoomJoin }) {
       <input className="w-64 px-4 py-2 border-2 border-gray-300 rounded-lg uppercase tracking-widest text-lg focus:border-indigo-400 text-center"
         type="text" placeholder="Room code (e.g., ABC123)" maxLength={8} autoFocus
         value={roomId} onChange={e=>setRoomId(e.target.value.toUpperCase())}
+        disabled={loading}
+      />
+      <input
+        className="w-64 px-4 py-2 border-2 border-gray-300 rounded-lg text-lg focus:border-indigo-400 text-center"
+        type="text"
+        placeholder="Your name"
+        value={userName}
+        onChange={e => setUserName(e.target.value)}
         disabled={loading}
       />
       <button type="button"
