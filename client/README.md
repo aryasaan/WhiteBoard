@@ -1,12 +1,50 @@
-# React + Vite
+# WhiteBoard Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the collaborative WhiteBoard app, built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
+- Join or create a whiteboard room with a code
+- Real-time drawing and cursor sharing
+- See active users in the room
+- Modern, responsive UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v16 or higher recommended)
+- npm
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Install dependencies
+```bash
+npm install
+```
+
+### Start the development server
+```bash
+npm run dev
+```
+- The app will run at [http://localhost:5173](http://localhost:5173) by default.
+
+### Build for production
+```bash
+npm run build
+```
+- Output will be in the `dist/` folder.
+
+## Environment Variables
+- Usually not required for the client, but you can add `.env` for custom Vite settings if needed.
+
+## Project Structure
+- `src/` — React components, utils, and styles
+- `public/` — Static assets
+
+## Usage
+1. Start the backend server (see `/server/README.md`).
+2. Start the client as above.
+3. Open [http://localhost:5173](http://localhost:5173) in your browser.
+4. Enter or generate a room code to join a whiteboard.
+5. Share the code with others to collaborate in real time.
+
+---
+
+**For backend setup and API details, see the `/server/README.md`.**
