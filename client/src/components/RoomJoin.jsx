@@ -14,9 +14,10 @@ export default function RoomJoin({ onRoomJoin }) {
     }
     setLoading(true);
     try {
-      const res = await fetch('/api/rooms/join', {
-        method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({roomId: roomId.trim().toUpperCase()}),
+      const res = await fetch('https://whiteboard-t6uc.onrender.com/api/rooms/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ roomId: roomId.trim().toUpperCase() }),
       });
       const data = await res.json();
       if (!data.success) setError(data.error || 'Error joining room');
