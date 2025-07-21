@@ -9,11 +9,20 @@ const roomRoutes = require('./routes/rooms');
 const app = express();
 const server = http.createServer(app);
 
+
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+  methods: ["GET", "POST"]
+};
+
+
+app.use(cors(corsOptions));
+
+
 const io = require('socket.io')(server, {
-  cors: { origin: process.env.CORS_ORIGIN, methods: ["GET", "POST"] }
+  cors: corsOptions
 });
 
-app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.json());
 app.use('/api/rooms', roomRoutes);
 
@@ -24,7 +33,7 @@ socketHandler(io);
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
 
 
-
-server.listen(process.env.PORT, () =>
-  console.log('Server running on', process.env.PORT)
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () =>
+  console.log('Server running on port', PORT)
 );
